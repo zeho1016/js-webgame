@@ -1,0 +1,63 @@
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>틱택토</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            td{
+                
+                border: 1px solid black;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <script>
+            // 구조분해 할당
+            const { body, createElement } = document;
+            const $table = createElement('table');
+            const $result = createElement('div');
+            let turn = 'O';
+
+
+            const data = [];
+            for(let i = 1; i <= 3; i++){
+                data.push([]);
+            }
+            for(let j = 1; j <= 3; i++){
+                const $tr = createElement('tr');
+                const cells= [];
+                for(let i = 0; i<3; i++){
+                    const $td = createElement('td');
+                    cells.push($td);
+                    $td.addEventListener('click',(event) => {
+                        // 칸에 글자가 있나
+                        if(event.target.textContent) return;
+                        console.log('clicked');
+                        event.target.textContent = turn;
+                        // 승부 확인  
+                        if(turn === 'O'){
+                            turn = 'X';
+                        } else if (turn === 'X'){
+                            turn = 'O';
+                        }
+                    })
+                    $tr.append($td);
+                }
+                rows.push(cells); 
+                $table.append($tr);
+            }
+            body.append($table);
+            body.append($result);
+        </script>
+    </body>
+    </html>
